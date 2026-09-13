@@ -1,0 +1,10 @@
+ts	campaign	iter	task_id	tool	metric	value	unit	notes	outcome
+2026-09-13T21:26:16Z	cuda-graphs-101	2	T3	sandbox/cuda-graphs-toy/bench.sh	eager_ms	33.1223	ms	trial=1 launches=1000 n=1048576	
+2026-09-13T21:26:16Z	cuda-graphs-101	2	T3	sandbox/cuda-graphs-toy/bench.sh	graph_ms	32.6397	ms	trial=1 launches=1000 n=1048576	
+2026-09-13T21:26:16Z	cuda-graphs-101	2	T3	sandbox/cuda-graphs-toy/bench.sh	speedup	1.0148	ratio	trial=1 launches=1000 n=1048576	
+2026-09-13T21:26:16Z	cuda-graphs-101	2	T3	sandbox/cuda-graphs-toy/bench.sh	eager_ms	33.0890	ms	trial=2 launches=1000 n=1048576	
+2026-09-13T21:26:16Z	cuda-graphs-101	2	T3	sandbox/cuda-graphs-toy/bench.sh	graph_ms	32.6880	ms	trial=2 launches=1000 n=1048576	
+2026-09-13T21:26:16Z	cuda-graphs-101	2	T3	sandbox/cuda-graphs-toy/bench.sh	speedup	1.0123	ratio	trial=2 launches=1000 n=1048576	
+2026-09-13T21:26:16Z	cuda-graphs-101	2	T3	sandbox/cuda-graphs-toy/bench.sh	eager_ms	33.1024	ms	trial=3 launches=1000 n=1048576	
+2026-09-13T21:26:16Z	cuda-graphs-101	2	T3	sandbox/cuda-graphs-toy/bench.sh	graph_ms	32.7168	ms	trial=3 launches=1000 n=1048576	
+2026-09-13T21:26:16Z	cuda-graphs-101	2	T3	sandbox/cuda-graphs-toy/bench.sh	speedup	1.0118	ratio	trial=3 launches=1000 n=1048576	

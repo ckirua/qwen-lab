@@ -1,0 +1,11 @@
+# Workstate
+- Updated: 2026-09-13T21:28:00Z
+- Campaign: cuda-graphs-101
+- Iter: 5 / 12
+- Profile_before_tick: daily
+- Profile_now: daily
+- HOLD_PROFILE: 0
+- Last_tool: declare_gate
+- Last_result_row: results/lab.tsv
+- Next_action: Campaign GO (learning); T6 remains human-gated
+- Stop_reason: GO

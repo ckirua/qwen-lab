@@ -1,0 +1,8 @@
+ts	campaign	iter	task_id	tool	metric	value	unit	notes	outcome
+2026-09-13T21:25:51Z	cuda-graphs-101	0	-	lab-restore-daily.sh	profile	daily	name	ERROR_RESTORED	
+2026-09-13T21:25:57Z	cuda-graphs-101	1	T1	plan_only	ok	1	count	plan_only T1: Next task is to probe nvcc, sm_75, and free VRAM; write notes/snippet.	
+2026-09-13T21:27:01Z	cuda-graphs-101	2	T5	plan_only	ok	1	count	plan_only T5: Next task is to write the campaign summary in campaigns/cuda-graphs-101/CAMPAIGN.md.	
+2026-09-13T21:27:11Z	cuda-graphs-101	3	T5	plan_only	ok	1	count	plan_only T5: Next task is to write the campaign summary in campaigns/cuda-graphs-101/CAMPAIGN.md.	
+2026-09-13T21:27:13Z	cuda-graphs-101	4		update_memory	ok	1	count	dry-run	
+2026-09-13T21:27:42Z	cuda-graphs-101	5	T6	plan_only	ok	1	count	plan_only T6: Next task is to measure llama.cpp graphs with CUDA graphs for Turing test.	
+2026-09-13T21:27:44Z	cuda-graphs-101	5	T5	declare_gate	outcome	GO	name	phase A complete; learning GO	GO

@@ -1,0 +1,50 @@
+# Runtime state / locks (not source of truth)
+.state/
+locks/
+*.lock
+
+# Build artifacts
+build/
+**/build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+*.o
+*.a
+*.so
+*.out
+compile_commands.json
+
+# Model weights / blobs
+*.gguf
+models/
+*.bin
+*.pt
+*.pth
+*.onnx
+*.safetensors
+
+# Secrets / local env
+.env
+.env.*
+!.env.example
+
+# LLM scratch
+.llm-drafts/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Logs / scratch
+*.log
+.cache/
