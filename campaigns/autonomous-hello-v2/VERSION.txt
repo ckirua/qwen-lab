@@ -1,0 +1,5 @@
+version=v2
+date=2026-09-13
+slug=autonomous-hello
+study=/home/kirua/app/qwen-lab/docs/studies/2026-09-13-autonomous-hello-v2.md
+compare_tsv=/home/kirua/app/qwen-lab/results/campaigns/autonomous-hello-v2-compare.tsv

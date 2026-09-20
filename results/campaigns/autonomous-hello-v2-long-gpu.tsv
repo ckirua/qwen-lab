@@ -1,0 +1,5 @@
+iso	campaign	iter	task	tool	rc	notes
+2026-09-13T23:22:05Z	autonomous-hello	3	T4	cmake -B sandbox/hello-cpp/build -S sandbox/hello-cpp	1	Next step is to build the hello-cpp project using CMake. | $ cmake -B sandbox/hello-cpp/build -S sandbox/hello-cpp rc=1 
+2026-09-13T23:22:20Z	autonomous-hello	5	T4	cmake -B sandbox/hello-cpp/build -S sandbox/hello-cpp	0	Sources are ready, next step is to build the hello-cpp project using CMake. | $ cmake -B sandbox/hello-cpp/build -S sand
+2026-09-13T23:22:26Z	autonomous-hello	6	T4	cmake --build sandbox/hello-cpp/build	0	Building the project after successful configuration. | $ cmake --build sandbox/hello-cpp/build rc=0 [ 50%] Building CXX 
+2026-09-13T23:22:34Z	autonomous-hello	7	T5	ctest --test-dir sandbox/hello-cpp/build --output-on-failure	0	Running ctest to verify the build and test setup. | $ ctest --test-dir sandbox/hello-cpp/build --output-on-failure rc=0 

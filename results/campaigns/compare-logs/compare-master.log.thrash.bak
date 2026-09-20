@@ -1,0 +1,142 @@
+compare: profiles=daily daily-spec long-gpu max_iters=30
+========== PROFILE daily ==========
+compare: restoring daily…
+Switching context profile → daily
+  CTX=32768 CTK/CTV=q8_0/q8_0 KV_OFFLOAD=1
+  RoPE=native (no YaRN / no context_length override)
+  speculation=off
+Updated /home/kirua/app/infer-server/infer-server.env
+Restarted infer-qwen.service; waiting for readiness…
+Ready: http://127.0.0.1:8080/v1/models (HTTP 200) after ~3s
+Server n_ctx (slot)=32768
+CONTEXT_PROFILE=daily
+CTX=32768
+CTK=q8_0
+CTV=q8_0
+KV_OFFLOAD=1
+ROPE_SCALING=
+ROPE_SCALE=
+YARN_ORIG_CTX=
+OVERRIDE_KV=
+SPEC_TYPE=
+SPEC_DRAFT_MODEL=
+SPEC_DRAFT_N_MAX=
+SPEC_DRAFT_NGL=
+MODEL_PATH=/home/kirua/app/models/Qwen2.5-Coder-7B-Instruct-Q5_K_M.gguf
+● infer-qwen.service - Local Qwen2.5-Coder llama-server (infer-server)
+     Loaded: loaded (/home/kirua/.config/systemd/user/infer-qwen.service; enabled; preset: enabled)
+     Active: active (running) since Sun 2026-09-13 22:55:40 UTC; 2s ago
+ Invocation: 9243d3c2bc5245179c9b694f32623fc5
+       Docs: file:///home/kirua/app/infer-server/README.md
+   Main PID: 222029 (llama-server)
+      Tasks: 17 (limit: 37021)
+     Memory: 267.6M (peak: 267.7M)
+        CPU: 1.718s
+     CGroup: /user.slice/user-1000.slice/user@1000.service/app.slice/infer-qwen.service
+             ├─222029 /home/kirua/app/llama.cpp/build/bin/llama-server -m /home/kirua/app/models/Qwen2.5-Coder-7B-Instruct-Q5_K_M.gguf -a gpt-4o-mini -ngl 999 -c 32768 -ctk q8_0 -ctv q8_0 --kv-offload --path /home/kirua/app/infer-server/.ui-llama -np 1 -t 4 -b 512 -ub 256 -fa on --jinja --host 100.79.227.71 --port 8080
+             └─222048 python3 /home/kirua/app/infer-server/scripts/loopback-forward.py --listen-host 127.0.0.1 --listen-port 8080 --to-host 100.79.227.71 --to-port 8080
+
+Sep 13 22:55:40 n2070 run-llama-server.sh[222029]: 0.00.036.493 W srv  llama_server: more info: https://github.com/ggml-org/llama.cpp/pull/25655
+Sep 13 22:55:40 n2070 run-llama-server.sh[222029]: 0.00.036.493 W srv  llama_server: -----------------
+Sep 13 22:55:40 n2070 run-llama-server.sh[222029]: 0.00.037.831 I srv    load_model: loading model '/home/kirua/app/models/Qwen2.5-Coder-7B-Instruct-Q5_K_M.gguf'
+Sep 13 22:55:40 n2070 run-llama-server.sh[222029]: 0.00.606.378 W load: control-looking token: 128247 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+Sep 13 22:55:41 n2070 run-llama-server.sh[222029]: 0.01.481.017 I cmn          init: llama threadpool init, n_threads = 4
+Sep 13 22:55:41 n2070 run-llama-server.sh[222029]: 0.01.563.256 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 32768, kv_unified = 'false'
+Sep 13 22:55:41 n2070 run-llama-server.sh[222029]: 0.01.568.458 I srv  llama_server: model loaded
+Sep 13 22:55:41 n2070 run-llama-server.sh[222029]: 0.01.568.467 I srv  llama_server: listening on http://100.79.227.71:8080
+Sep 13 22:55:41 n2070 run-llama-server.sh[222029]: 0.01.568.467 W srv  llama_server: NOTICE: server default port will be changed to :9931 in a future release
+Sep 13 22:55:41 n2070 run-llama-server.sh[222029]: 0.01.568.467 W srv  llama_server:         ref: https://github.com/ggml-org/llama.cpp/pull/26508
+compare: switching to daily
+Switching context profile → daily
+  CTX=32768 CTK/CTV=q8_0/q8_0 KV_OFFLOAD=1
+  RoPE=native (no YaRN / no context_length override)
+  speculation=off
+Updated /home/kirua/app/infer-server/infer-server.env
+Restarted infer-qwen.service; waiting for readiness…
+Ready: http://127.0.0.1:8080/v1/models (HTTP 200) after ~3s
+Server n_ctx (slot)=32768
+CONTEXT_PROFILE=daily
+CTX=32768
+CTK=q8_0
+CTV=q8_0
+KV_OFFLOAD=1
+ROPE_SCALING=
+ROPE_SCALE=
+YARN_ORIG_CTX=
+OVERRIDE_KV=
+SPEC_TYPE=
+SPEC_DRAFT_MODEL=
+SPEC_DRAFT_N_MAX=
+SPEC_DRAFT_NGL=
+MODEL_PATH=/home/kirua/app/models/Qwen2.5-Coder-7B-Instruct-Q5_K_M.gguf
+● infer-qwen.service - Local Qwen2.5-Coder llama-server (infer-server)
+     Loaded: loaded (/home/kirua/.config/systemd/user/infer-qwen.service; enabled; preset: enabled)
+     Active: active (running) since Sun 2026-09-13 22:55:42 UTC; 2s ago
+ Invocation: 09d726cc4fe74991ac9d78d6cfd5bf83
+       Docs: file:///home/kirua/app/infer-server/README.md
+   Main PID: 222246 (llama-server)
+      Tasks: 17 (limit: 37021)
+     Memory: 267.4M (peak: 267.5M)
+        CPU: 1.753s
+     CGroup: /user.slice/user-1000.slice/user@1000.service/app.slice/infer-qwen.service
+             ├─222246 /home/kirua/app/llama.cpp/build/bin/llama-server -m /home/kirua/app/models/Qwen2.5-Coder-7B-Instruct-Q5_K_M.gguf -a gpt-4o-mini -ngl 999 -c 32768 -ctk q8_0 -ctv q8_0 --kv-offload --path /home/kirua/app/infer-server/.ui-llama -np 1 -t 4 -b 512 -ub 256 -fa on --jinja --host 100.79.227.71 --port 8080
+             └─222266 python3 /home/kirua/app/infer-server/scripts/loopback-forward.py --listen-host 127.0.0.1 --listen-port 8080 --to-host 100.79.227.71 --to-port 8080
+
+Sep 13 22:55:42 n2070 run-llama-server.sh[222246]: 0.00.039.637 W srv  llama_server: more info: https://github.com/ggml-org/llama.cpp/pull/25655
+Sep 13 22:55:42 n2070 run-llama-server.sh[222246]: 0.00.039.638 W srv  llama_server: -----------------
+Sep 13 22:55:42 n2070 run-llama-server.sh[222246]: 0.00.041.015 I srv    load_model: loading model '/home/kirua/app/models/Qwen2.5-Coder-7B-Instruct-Q5_K_M.gguf'
+Sep 13 22:55:43 n2070 run-llama-server.sh[222246]: 0.00.636.947 W load: control-looking token: 128247 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+Sep 13 22:55:44 n2070 run-llama-server.sh[222246]: 0.01.513.993 I cmn          init: llama threadpool init, n_threads = 4
+Sep 13 22:55:44 n2070 run-llama-server.sh[222246]: 0.01.596.672 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 32768, kv_unified = 'false'
+Sep 13 22:55:44 n2070 run-llama-server.sh[222246]: 0.01.602.169 I srv  llama_server: model loaded
+Sep 13 22:55:44 n2070 run-llama-server.sh[222246]: 0.01.602.176 I srv  llama_server: listening on http://100.79.227.71:8080
+Sep 13 22:55:44 n2070 run-llama-server.sh[222246]: 0.01.602.177 W srv  llama_server: NOTICE: server default port will be changed to :9931 in a future release
+Sep 13 22:55:44 n2070 run-llama-server.sh[222246]: 0.01.602.178 W srv  llama_server:         ref: https://github.com/ggml-org/llama.cpp/pull/26508
+compare: restoring daily…
+Switching context profile → daily
+  CTX=32768 CTK/CTV=q8_0/q8_0 KV_OFFLOAD=1
+  RoPE=native (no YaRN / no context_length override)
+  speculation=off
+Updated /home/kirua/app/infer-server/infer-server.env
+Restarted infer-qwen.service; waiting for readiness…
+Ready: http://127.0.0.1:8080/v1/models (HTTP 200) after ~3s
+Server n_ctx (slot)=32768
+CONTEXT_PROFILE=daily
+CTX=32768
+CTK=q8_0
+CTV=q8_0
+KV_OFFLOAD=1
+ROPE_SCALING=
+ROPE_SCALE=
+YARN_ORIG_CTX=
+OVERRIDE_KV=
+SPEC_TYPE=
+SPEC_DRAFT_MODEL=
+SPEC_DRAFT_N_MAX=
+SPEC_DRAFT_NGL=
+MODEL_PATH=/home/kirua/app/models/Qwen2.5-Coder-7B-Instruct-Q5_K_M.gguf
+● infer-qwen.service - Local Qwen2.5-Coder llama-server (infer-server)
+     Loaded: loaded (/home/kirua/.config/systemd/user/infer-qwen.service; enabled; preset: enabled)
+     Active: active (running) since Sun 2026-09-13 22:57:47 UTC; 2s ago
+ Invocation: f706a494f44a448ebe2a504fcc07db6d
+       Docs: file:///home/kirua/app/infer-server/README.md
+   Main PID: 225885 (llama-server)
+      Tasks: 17 (limit: 37021)
+     Memory: 267.6M (peak: 267.9M)
+        CPU: 1.764s
+     CGroup: /user.slice/user-1000.slice/user@1000.service/app.slice/infer-qwen.service
+             ├─225885 /home/kirua/app/llama.cpp/build/bin/llama-server -m /home/kirua/app/models/Qwen2.5-Coder-7B-Instruct-Q5_K_M.gguf -a gpt-4o-mini -ngl 999 -c 32768 -ctk q8_0 -ctv q8_0 --kv-offload --path /home/kirua/app/infer-server/.ui-llama -np 1 -t 4 -b 512 -ub 256 -fa on --jinja --host 100.79.227.71 --port 8080
+             └─225904 python3 /home/kirua/app/infer-server/scripts/loopback-forward.py --listen-host 127.0.0.1 --listen-port 8080 --to-host 100.79.227.71 --to-port 8080
+
+Sep 13 22:57:47 n2070 run-llama-server.sh[225885]: 0.00.039.152 W srv  llama_server: more info: https://github.com/ggml-org/llama.cpp/pull/25655
+Sep 13 22:57:47 n2070 run-llama-server.sh[225885]: 0.00.039.152 W srv  llama_server: -----------------
+Sep 13 22:57:47 n2070 run-llama-server.sh[225885]: 0.00.040.493 I srv    load_model: loading model '/home/kirua/app/models/Qwen2.5-Coder-7B-Instruct-Q5_K_M.gguf'
+Sep 13 22:57:47 n2070 run-llama-server.sh[225885]: 0.00.603.798 W load: control-looking token: 128247 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+Sep 13 22:57:48 n2070 run-llama-server.sh[225885]: 0.01.513.870 I cmn          init: llama threadpool init, n_threads = 4
+Sep 13 22:57:48 n2070 run-llama-server.sh[225885]: 0.01.600.431 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 32768, kv_unified = 'false'
+Sep 13 22:57:48 n2070 run-llama-server.sh[225885]: 0.01.605.908 I srv  llama_server: model loaded
+Sep 13 22:57:48 n2070 run-llama-server.sh[225885]: 0.01.605.915 I srv  llama_server: listening on http://100.79.227.71:8080
+Sep 13 22:57:48 n2070 run-llama-server.sh[225885]: 0.01.605.916 W srv  llama_server: NOTICE: server default port will be changed to :9931 in a future release
+Sep 13 22:57:48 n2070 run-llama-server.sh[225885]: 0.01.605.916 W srv  llama_server:         ref: https://github.com/ggml-org/llama.cpp/pull/26508
+compare: final profile:
+CONTEXT_PROFILE=daily

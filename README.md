@@ -6,26 +6,41 @@ Sibling of `infer-server` — never nests under the daily driver ops tree.
 ## Safety summary
 
 - Daily profile is sacred; every tick restores `CONTEXT_PROFILE=daily` unless `HOLD_PROFILE=1`.
-- Allowlisted tools only (`ALLOWLIST.md` + `scripts/lab-run.sh`).
-- Stop on GO / NO-GO / budget (12 iters or 6h for `cuda-graphs-101`).
+- Allowlisted tools only (`ALLOWLIST.md` + `scripts/lab-run.sh` / `lab-write.sh`).
+- Stop on GO / NO-GO / budget.
 - No silent edits to shipped `infer-server` profile maps.
 
-## Arm / stop (Cursor `/loop`)
+## Campaigns
 
-See [`docs/lab-loop.md`](docs/lab-loop.md).
+| Id | Goal |
+|---|---|
+| `cuda-graphs-101` | CUDA graphs learning toy (complete) |
+| `autonomous-hello` | Autonomous CMake C++ hello + ctest (write_file + supervisor) |
+
+## Headless supervisor (Qwen-only)
 
 ```bash
-# Dynamic wake (preferred)
-sleep 5
-echo 'AGENT_LOOP_WAKE_qwenlab {"prompt":"Run /home/kirua/app/qwen-lab/scripts/lab-tick.sh; if Outcome set or budget exhausted, stop this loop and confirm daily profile."}'
+/home/kirua/app/qwen-lab/scripts/lab-supervisor.sh \
+  --max-iters 30 --campaign autonomous-hello
 ```
 
-`notify_on_output` pattern: `^AGENT_LOOP_WAKE_qwenlab`
-
-## Headless supervisor
+## Multi-profile compare (versioned studies)
 
 ```bash
-/home/kirua/app/qwen-lab/scripts/lab-supervisor.sh --max-iters 12 --campaign cuda-graphs-101
+/home/kirua/app/qwen-lab/scripts/lab-compare-profiles.sh
+# auto-bumps docs/studies/YYYY-MM-DD-autonomous-hello-vN.md
+# + results/campaigns/autonomous-hello-vN-*.tsv
+# + campaigns/autonomous-hello-vN/
+```
+
+Index: [`docs/studies/INDEX.md`](docs/studies/INDEX.md)  
+Never overwrite prior `vN` — bump versions. See `MEMORY.md` for latest study link.
+
+## Cursor `/loop` (optional)
+
+```bash
+sleep 5
+echo 'AGENT_LOOP_WAKE_qwenlab {"prompt":"Run /home/kirua/app/qwen-lab/scripts/lab-tick.sh; if Outcome set or budget exhausted, stop this loop and confirm daily profile."}'
 ```
 
 ## One tick
@@ -37,8 +52,4 @@ echo 'AGENT_LOOP_WAKE_qwenlab {"prompt":"Run /home/kirua/app/qwen-lab/scripts/la
 
 ## LLM
 
-Prefer `http://127.0.0.1:8090/v1` model `gpt-4o-mini-spec`; fallback `8080` `gpt-4o-mini`.
-
-## Inaugural campaign
-
-`campaigns/cuda-graphs-101` — CUDA graphs learning on sm_75 (toy microbench). Not a ship path.
+Prefer direct `:8080` with the live GGUF alias during profile compares (bypass router). Default `lab-llm.sh` still prefers router `:8090` `gpt-4o-mini-spec` with `:8080` fallback to `/v1/models` id.

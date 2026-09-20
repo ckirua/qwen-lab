@@ -1,0 +1,4 @@
+profile	wall_s	iters	outcome	ctest_ok	main_ok	cmake_ok	plan_ok	exe_ok	gen_tps	prompt_tok_est	prompt_n	pred_n	notes
+daily	66	9	GO	1	1	1	1	1	54.00852296037333	2900	2900	105	artifacts=/home/kirua/app/qwen-lab/results/campaigns/autonomous-hello-v2-daily-artifacts
+daily-spec	78	12	GO	1	1	1	1	1	86.46142219432684	3175	3175	109	artifacts=/home/kirua/app/qwen-lab/results/campaigns/autonomous-hello-v2-daily-spec-artifacts
+long-gpu	58	8	GO	1	1	1	1	1	53.58003086996274	3032	3032	110	artifacts=/home/kirua/app/qwen-lab/results/campaigns/autonomous-hello-v2-long-gpu-artifacts

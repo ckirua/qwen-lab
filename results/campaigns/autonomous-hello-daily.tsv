@@ -1,0 +1,8 @@
+iso	campaign	iter	task	tool	rc	notes
+2026-09-13T23:00:58Z	autonomous-hello	15	T4	cmake -B sandbox/hello-cpp/build && cmake --build sandbox/hello-cpp/build	1	Next step is to build the project using CMake. | $ cmake -B sandbox/hello-cpp/build rc=1  /home/kirua/app/qwen-lab/scrip
+2026-09-13T23:01:13Z	autonomous-hello	17	T4	cmake -B sandbox/hello-cpp/build && cmake --build sandbox/hello-cpp/build	1	Next step is to build the project using CMake. | $ cmake -B sandbox/hello-cpp/build rc=1  /home/kirua/app/qwen-lab/scrip
+2026-09-13T23:01:27Z	autonomous-hello	19	T4	cmake -B sandbox/hello-cpp/build && cmake --build sandbox/hello-cpp/build	1	Next step is to build the project using CMake. | $ cmake -B sandbox/hello-cpp/build rc=1  /home/kirua/app/qwen-lab/scrip
+2026-09-13T23:01:53Z	autonomous-hello	22	T4	cmake -B sandbox/hello-cpp/build && cmake --build sandbox/hello-cpp/build	1	Preparing to build the hello-cpp project. | $ cmake -B sandbox/hello-cpp/build rc=1  /home/kirua/app/qwen-lab/scripts/la
+2026-09-13T23:02:20Z	autonomous-hello	25	T4	cmake -B sandbox/hello-cpp/build && cmake --build sandbox/hello-cpp/build	1	Building the project is the next step after setting up the build system. | $ cmake -B sandbox/hello-cpp/build rc=1  /hom
+2026-09-13T23:02:36Z	autonomous-hello	27	T4	cmake -B sandbox/hello-cpp/build && cmake --build sandbox/hello-cpp/build	1	Next step is to build the project using CMake. | $ cmake -B sandbox/hello-cpp/build rc=1  /home/kirua/app/qwen-lab/scrip
+2026-09-13T23:02:52Z	autonomous-hello	29	T4	cmake -B sandbox/hello-cpp/build && cmake --build sandbox/hello-cpp/build	1	Preparing to build the hello-cpp project using CMake. | $ cmake -B sandbox/hello-cpp/build rc=1  /home/kirua/app/qwen-la

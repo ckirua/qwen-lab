@@ -1,0 +1,84 @@
+# Memory compact
+
+# Memory
+
+Durable lessons. Append-only bullets under dated headings. Cap ~80 lines; compact into `notes/` when exceeded.
+
+## 2026-09-13
+- Lab root is `/home/kirua/app/qwen-lab/` (sibling of infer-server); never nest under daily-driver ops.
+- Prefer router `http://127.0.0.1:8090/v1` model `gpt-4o-mini-spec`; fallback `8080` `gpt-4o-mini`.
+- CUDA toolkit for toys: `/home/kirua/app/deps/usr/local/cuda-13.1` (sm_75 / RTX 2070).
+- Product verdict for llama.cpp graphs is already SKIP ship (P2); cuda-graphs-101 is learning only.
+- Planned T1: Next task is to probe nvcc, sm_75, and free VRAM; write notes/snippet.
+- T1 probe: nvcc 13.1 at deps/usr/local/cuda-13.1; RTX 2070 sm_75; notes/2026-09-13-toolchain-probe.md
+- T2/T3: cuda-graphs-toy built; 3 trials N=1M ×1000 launches ≈1.01× graph vs eager (body-dominated).
+- H1 refuted at N=1M; H2 supported — graphs matter when launch overhead dominates (see notes/2026-09-13-cuda-graphs-learning.md).
+- Phase B (llama graphs remeasure) left behind HUMAN_GATE / LAB_CONFIRM_LLAMA_GRAPHS=1.
+- Planned T5: Next task is to write the campaign summary in campaigns/cuda-graphs-101/CAMPAIGN.md.
+- Planned T5: Next task is to write the campaign summary in campaigns/cuda-graphs-101/CAMPAIGN.md.
+- dry-run tick: no tools
+- Planned T6: Next task is to measure llama.cpp graphs with CUDA graphs for Turing test.
+- Wrote campaigns/autonomous-hello/plan.md (T1): Writing the plan.md file is the first step in outlining the campaign objectives and tasks.
+- Created plan.md for the autonomous-hello campaign
+- Defined goal, file list, test command, and GO criteria
+- Wrote campaigns/autonomous-hello/plan.md (T1): Writing the plan.md file is the first step in outlining the campaign objectives and tasks.
+- Created plan.md for the autonomous-hello campaign
+- Defined goal, file list, test command, and GO criteria
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T2): Writing CMakeLists.txt is the next step in setting up the build system for the hello-cpp project.
+- Created CMakeLists.txt for hello-cpp project
+- Wrote sandbox/hello-cpp/main.cpp (T3): Writing the main.cpp file is the next step in setting up the hello-cpp project
+- Created main.cpp with a simple C++ program that prints 'hello qwen-lab'
+- Next step is to build and test the program
+- Wrote campaigns/autonomous-hello/plan.md (T1): Writing the plan.md file outlines the campaign objectives and tasks, providing a roadmap for the subsequent steps.
+- Wrote campaigns/autonomous-hello/plan.md (T1): Writing the plan.md file is the first step in outlining the campaign objectives and tasks.
+- Created plan.md for the autonomous-hello campaign
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T2): Writing CMakeLists.txt is the next step in setting up the build system for the hello-cpp project.
+- Created CMakeLists.txt for hello-cpp project
+- Wrote sandbox/hello-cpp/main.cpp (T3): Next step is to write the main.cpp file for the hello-cpp project.
+- Wrote main.cpp with a simple C++ program that prints 'hello qwen-lab'
+- Planned T4: Preparing to build and test the hello-cpp project.
+- Planned T4: Task T4 is the next step in the plan to build and test the hello-cpp project.
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T4): Writing CMakeLists.txt is the next step in setting up the build system for the hello-cpp project.
+- Updated CMakeLists.txt for hello-cpp project
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T2): Writing CMakeLists.txt is the next step in setting up the build system for the hello-cpp project.
+- Created CMakeLists.txt for hello-cpp project
+- Planned T4: Next task is to build and test the hello-cpp project.
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T4): Writing the CMakeLists.txt file is the next step in setting up the build system for the hello-cpp project.
+- Updated CMakeLists.txt for hello-cpp project
+- Planned T4: Next task is to build and test the hello-cpp project.
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T4):
+- Wrote campaigns/autonomous-hello/plan.md (T4): Writing the plan.md file outlines the campaign objectives and tasks, providing a roadmap for the subsequent steps.
+- Updated plan.md for the autonomous-hello campaign
+- Defined goal, file list, test command, and GO criteria
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T4): Writing updated CMakeLists.txt to include executable and test setup
+- Updated CMakeLists.txt for hello-cpp project
+- CMakeLists.txt now includes executable and test setup
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T4): Writing updated CMakeLists.txt to include executable and test setup
+- Updated CMakeLists.txt to include executable and test setup
+- Wrote campaigns/autonomous-hello/plan.md (T1): Writing the plan.md file outlines the campaign objectives and tasks, providing a roadmap for the subsequent steps.
+- Created plan.md for the autonomous-hello campaign
+- Defined goal, file list, test command, and GO criteria
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T2): Writing CMakeLists.txt is the next step in setting up the build system for the hello-cpp project.
+- Created CMakeLists.txt for hello-cpp project
+- Wrote sandbox/hello-cpp/main.cpp (T3): Writing the main.cpp file is the next step in setting up the hello-cpp project
+- Created main.cpp with a simple C++ program that prints 'hello qwen-lab'
+- Next task is to build and test the hello-cpp project
+- Done T4: Next step is to build the hello-cpp project using CMake.
+- Done T5: Running ctest to verify the build and test the hello-cpp project.
+- Wrote campaigns/autonomous-hello/plan.md (T6): Writing the plan.md file outlines the campaign objectives and tasks, providing a roadmap for the subsequent steps.
+- Updated plan.md for the autonomous-hello campaign
+- Defined goal, file list, test command, and GO criteria
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T4): Writing the CMakeLists.txt file is the next step in setting up the build system for the hello-cpp project.
+- Updated CMakeLists.txt for hello-cpp project
+- Wrote campaigns/autonomous-hello/plan.md (T4): Writing the plan.md file outlines the campaign objectives and tasks, providing a roadmap for the subsequent steps.
+- Updated plan.md for the autonomous-hello campaign
+- Defined goal, file list, test command, and GO criteria
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T2): Writing CMakeLists.txt is the next step in setting up the build system for the hello-cpp project.
+- Created CMakeLists.txt for hello-cpp project
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T4): Writing updated CMakeLists.txt to include executable and test setup
+- Updated CMakeLists.txt for hello-cpp project
+- Done T4: Next step is to build the hello-cpp project using CMake.
+- Done T4: Next step is to build the hello-cpp project using CMake.
+- Wrote campaigns/autonomous-hello/plan.md (T1): Writing the plan.md file outlines the campaign objectives and tasks, providing a roadmap for the subsequent steps.
+- Created plan.md for the autonomous-hello campaign
+- Defined goal, file list, test command, and GO criteria

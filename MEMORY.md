@@ -4,15 +4,67 @@ Durable lessons. Append-only bullets under dated headings. Cap ~80 lines; compac
 
 ## 2026-09-13
 - Lab root is `/home/kirua/app/qwen-lab/` (sibling of infer-server); never nest under daily-driver ops.
-- Prefer router `http://127.0.0.1:8090/v1` model `gpt-4o-mini-spec`; fallback `8080` `gpt-4o-mini`.
+- Prefer router `http://127.0.0.1:8090/v1` model `gpt-4o-mini-spec`; fallback `:8080` using the live llama-server alias (real GGUF name, e.g. `Qwen2.5-Coder-7B-Instruct`).
 - CUDA toolkit for toys: `/home/kirua/app/deps/usr/local/cuda-13.1` (sm_75 / RTX 2070).
-- Product verdict for llama.cpp graphs is already SKIP ship (P2); cuda-graphs-101 is learning only.
-- Planned T1: Next task is to probe nvcc, sm_75, and free VRAM; write notes/snippet.
-- T1 probe: nvcc 13.1 at deps/usr/local/cuda-13.1; RTX 2070 sm_75; notes/2026-09-13-toolchain-probe.md
-- T2/T3: cuda-graphs-toy built; 3 trials N=1M ×1000 launches ≈1.01× graph vs eager (body-dominated).
-- H1 refuted at N=1M; H2 supported — graphs matter when launch overhead dominates (see notes/2026-09-13-cuda-graphs-learning.md).
-- Phase B (llama graphs remeasure) left behind HUMAN_GATE / LAB_CONFIRM_LLAMA_GRAPHS=1.
-- Planned T5: Next task is to write the campaign summary in campaigns/cuda-graphs-101/CAMPAIGN.md.
-- Planned T5: Next task is to write the campaign summary in campaigns/cuda-graphs-101/CAMPAIGN.md.
-- dry-run tick: no tools
-- Planned T6: Next task is to measure llama.cpp graphs with CUDA graphs for Turing test.
+## 2026-09-13
+- Compacted older memory → notes/2026-09-13-memory-compact.md
+- Wrote campaigns/autonomous-hello/plan.md (T4): Writing the plan.md file outlines the campaign objectives and tasks, providing a roadmap for the subsequent steps.
+- Updated plan.md for the autonomous-hello campaign
+- Defined goal, file list, test command, and GO criteria
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T2): Writing CMakeLists.txt is the next step in setting up the build system for the hello-cpp project.
+- Created CMakeLists.txt for hello-cpp project
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T4): Writing updated CMakeLists.txt to include executable and test setup
+- Updated CMakeLists.txt for hello-cpp project
+- Done T4: Next step is to build the hello-cpp project using CMake.
+- Done T4: Next step is to build the hello-cpp project using CMake.
+- Wrote campaigns/autonomous-hello/plan.md (T1): Writing the plan.md file outlines the campaign objectives and tasks, providing a roadmap for the subsequent steps.
+- Created plan.md for the autonomous-hello campaign
+- Defined goal, file list, test command, and GO criteria
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T2): Writing CMakeLists.txt is the next step in setting up the build system for the hello-cpp project.
+- Created CMakeLists.txt for hello-cpp project
+- Done T4: Next step is to build the hello-cpp project using CMake.
+- Wrote sandbox/hello-cpp/main.cpp (T3): Next step is to create the main.cpp file with the required print statement.
+- Created main.cpp with print statement
+- Done T4: Running ctest to verify the build and test setup.
+- ctest passed successfully
+- plan.md file exists
+- Studies are versioned: docs/studies/YYYY-MM-DD-<slug>-vN.md + docs/studies/INDEX.md (never overwrite; bump vN).
+- autonomous-hello v1 migrated: docs/studies/2026-09-13-autonomous-hello-v1.md (raw: results/campaigns/autonomous-hello-v1-compare.tsv; board: campaigns/autonomous-hello-v1/).
+- Handoff protocol: fresh chat each lab-tick; continuity via TASKBOARD/WORKSTATE/MEMORY/plan/.state/last_tool_output.txt only.
+- v1 lesson: cwd=qwen-lab + nested sandbox paths caused BUDGET/false GO; fixed for v2+ (force lab-root cwd, auto -S, GO requires build/hello).
+- Wrote campaigns/autonomous-hello/plan.md (T1): Writing the plan.md file outlines the campaign objectives and tasks, providing a roadmap for the subsequent steps.
+- Created plan.md for the autonomous-hello campaign
+- Defined goal, file list, test command, and GO criteria
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T2): Next step is to create the CMakeLists.txt file for the hello-cpp project.
+- Created CMakeLists.txt for hello-cpp project
+- Wrote sandbox/hello-cpp/main.cpp (T3): Next step is to create the main.cpp file with the required print statement.
+- Created main.cpp with print statement
+- Done T4: Next step is to build the hello-cpp project using CMake.
+- Done T4: Next step is to build the hello-cpp project using CMake.
+- Done T5: Next task is to run ctest to verify the build and test setup.
+- Planned T6: ctest passed and plan.md exists, ready to declare GO
+- ctest passed successfully
+- plan.md file exists
+- Wrote campaigns/autonomous-hello/plan.md (T1): Writing the plan.md file outlines the campaign objectives and tasks, providing a roadmap for the subsequent steps.
+- Created plan.md for the autonomous-hello campaign
+- Defined goal, file list, test command, and GO criteria
+- Planned T2: T2: Create sandbox/hello-cpp/CMakeLists.txt (C++17, add_executable hello, enable_testing + add_test)
+- Wrote sandbox/hello-cpp/main.cpp (T3): Creating the main.cpp file with the required print statement
+- Created main.cpp with print statement
+- Done T4: Next step is to build the hello-cpp project using CMake.
+- Done T4: Building the hello-cpp project using CMake.
+- Done T5: Next task is to run ctest to verify the build and test setup.
+- ctest passed successfully
+- plan.md file exists
+- Wrote campaigns/autonomous-hello/plan.md (T1):
+- Wrote sandbox/hello-cpp/CMakeLists.txt (T2): Writing CMakeLists.txt for the hello-cpp project
+- Created CMakeLists.txt for hello-cpp project
+- Wrote sandbox/hello-cpp/main.cpp (T3): Creating the main.cpp file with the required print statement
+- Created main.cpp with the required print statement
+- Done T4: Sources are ready, next step is to build the hello-cpp project using CMake.
+- Done T4: Building the project after successful configuration.
+- Done T5: Running ctest to verify the build and test setup.
+- ctest passed successfully
+- plan.md file exists
+- Study autonomous-hello v2 written: docs/studies/2026-09-13-autonomous-hello-v2.md (INDEX: docs/studies/INDEX.md; raw results/campaigns/autonomous-hello-v2-compare.tsv)
+- v2 verified GO all profiles: daily 9/66s, daily-spec 12/78s, long-gpu 8/58s (ctest_ok=1 + exe); H1 unsupported (spec faster tok/s, not fewer iters); v1 false-GO/BUDGET fixed by harness.

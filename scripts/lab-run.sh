@@ -142,6 +142,53 @@ elif [[ "${CMD0}" == "cmake" ]]; then
     fi
   fi
   [[ "${allowed}" -eq 1 ]] || deny "cmake only under sandbox with -B/--build"
+elif [[ "${CMD0}" == "ctest" ]]; then
+  joined="${full_cmd[*]}"
+  # Prefer exact hello success probe; also allow --test-dir under sandbox/**
+  if [[ "${joined}" == "ctest --test-dir sandbox/hello-cpp/build --output-on-failure" ]]; then
+    allowed=1
+  elif [[ "${joined}" == *"--test-dir"*sandbox/* && "${joined}" == *"--output-on-failure"* ]]; then
+    # resolve --test-dir argument
+    td=""
+    prev=""
+    for a in "${full_cmd[@]}"; do
+      if [[ "${prev}" == "--test-dir" ]]; then
+        td="${a}"
+        break
+      fi
+      prev="${a}"
+    done
+    [[ -n "${td}" ]] || deny "ctest missing --test-dir"
+    if [[ "${td}" != /* ]]; then
+      td="$(cd "${RUN_CWD}" && realpath -m "${td}")"
+    fi
+    case "${td}" in
+      "${LAB_ROOT}/sandbox/"*) allowed=1 ;;
+      *) deny "ctest --test-dir must be under sandbox/: ${td}" ;;
+    esac
+  else
+    deny "ctest not allowlisted: ${joined}"
+  fi
+elif [[ "${CMD0}" == "ls" || "${CMD0}" == "test" ]]; then
+  # Inspect only under sandbox/hello-cpp/**
+  if [[ ${#ARGS[@]} -lt 1 ]]; then
+    deny "${CMD0} needs path args under sandbox/hello-cpp"
+  fi
+  for a in "${ARGS[@]}"; do
+    [[ "${a}" == -* ]] && continue
+    target="${a}"
+    [[ "${target}" = /* ]] || target="$(cd "${RUN_CWD}" && realpath -m "${target}")"
+    case "${target}" in
+      "${LAB_ROOT}/sandbox/hello-cpp"|"${LAB_ROOT}/sandbox/hello-cpp"/*) ;;
+      *) deny "${CMD0} path outside sandbox/hello-cpp: ${target}" ;;
+    esac
+  done
+  if [[ "${CMD0}" == "test" ]]; then
+    # only test -f / -d / -e
+    [[ ${#ARGS[@]} -ge 2 && ( "${ARGS[0]}" == "-f" || "${ARGS[0]}" == "-d" || "${ARGS[0]}" == "-e" ) ]] \
+      || deny "test only -f/-d/-e under hello-cpp"
+  fi
+  allowed=1
 elif [[ "${CMD0}" == *"/bench.sh" || "${CMD0}" == "sandbox/"*"/bench.sh" || "${CMD0}" == bench.sh ]]; then
   bench_path="${CMD0}"
   if [[ "${bench_path}" != /* ]]; then

@@ -1,52 +1,75 @@
-# Qwen Lab `/loop` (local monitored shell)
+# Qwen Lab `/loop` (local monitored shell) + headless supervisor
 
-Stop-when-GO/NO-GO-or-budget loop for `scripts/lab-tick.sh`. Uses the Cursor **loop** skill’s **monitored shell output** path (local IDE — not cloud subscription timers).
+Stop-when-GO/NO-GO-or-budget for `scripts/lab-tick.sh`. Two drivers:
 
-## Goal
+1. **Headless (preferred for studies):** `lab-supervisor.sh` / `lab-compare-profiles.sh` — Qwen-only ticks, no Cursor wakes.
+2. **Cursor monitored shell:** dynamic wake sentinel (below).
 
-Run the active campaign (default `cuda-graphs-101`) one tick at a time with durable file memory. Max **12** iterations or **6h**. Always end on **`daily`**.
+## Autonomous-hello (inaugural coding campaign)
 
-## Arm once
+| Item | Value |
+|---|---|
+| Campaign | `autonomous-hello` |
+| Sandbox | `sandbox/hello-cpp/` (agent-created) |
+| Success | green `ctest` + artifacts + `declare_gate` GO |
+| Budget | **MAX_ITERS=30**, MAX_WALL_H=4 |
+| Continuity | Files only; **fresh LLM context each tick** |
 
-1. Check terminals for an existing `AGENT_LOOP_TICK_qwenlab` / `AGENT_LOOP_WAKE_qwenlab` loop — do not duplicate.
-2. Prefer **dynamic wake** (GPU ticks vary):
+### Arm headless (single profile)
 
 ```bash
-# After each tick completes, the agent re-arms:
+/home/kirua/app/infer-server/scripts/switch-context.sh status   # expect daily
+/home/kirua/app/qwen-lab/scripts/lab-supervisor.sh \
+  --max-iters 30 --max-wall-h 4 --campaign autonomous-hello
+/home/kirua/app/qwen-lab/scripts/lab-restore-daily.sh
+```
+
+### Multi-profile study compare (versioned)
+
+```bash
+/home/kirua/app/qwen-lab/scripts/lab-compare-profiles.sh
+# INCLUDE_LONG_GPU=0 to skip long-gpu timebox arm
+```
+
+Each run **bumps** a new version (never overwrites):
+
+| Artifact | Path |
+|---|---|
+| Study | `docs/studies/YYYY-MM-DD-autonomous-hello-vN.md` |
+| INDEX | `docs/studies/INDEX.md` |
+| Raw TSV | `results/campaigns/autonomous-hello-vN-compare.tsv` |
+| Per-profile | `results/campaigns/autonomous-hello-vN-<profile>.tsv` + `-artifacts/` |
+| Board snapshot | `campaigns/autonomous-hello-vN/` |
+
+Always restores **`CONTEXT_PROFILE=daily`** between profiles and at end.
+
+### Role-tick / handoff protocol
+
+Each `lab-tick.sh` uses a **fresh chat** (`messages=[system,user]` only). Continuity is files only:
+
+1. Assemble SAFETY + ALLOWLIST + TASKBOARD + WORKSTATE + plan excerpt + MEMORY + **`.state/last_tool_output.txt`** (≤~8k tok).
+2. Call `lab-llm.sh` — no prior assistant turns.
+3. One action → update boards + WORKSTATE (`Next_action`, `Last_result`, `## Handoff`) + truncate tool output for the next tick.
+4. Restores daily unless `HOLD_PROFILE=1`.
+
+Suggested cadence: T1 plan → T2–T3 implement (`write_file`) → T4–T5 cmake/ctest → T6 gate.
+
+## Cursor `/loop` (optional)
+
+1. Check terminals for an existing `AGENT_LOOP_WAKE_qwenlab` sleeper — do not duplicate.
+2. Dynamic wake:
+
+```bash
 sleep 5
-echo 'AGENT_LOOP_WAKE_qwenlab {"prompt":"Run /home/kirua/app/qwen-lab/scripts/lab-tick.sh; if Outcome set or budget exhausted, stop this loop and confirm daily profile."}'
+echo 'AGENT_LOOP_WAKE_qwenlab {"prompt":"Run /home/kirua/app/qwen-lab/scripts/lab-tick.sh once. Context is file-only. If .state/tick.env OUTCOME is set or ITER>=MAX, stop this loop, run lab-restore-daily.sh, confirm daily profile, and summarize GO/NO-GO/BUDGET."}'
 ```
 
-Fixed 15m alternative (unsupervised overnight — still stop on Outcome):
+`notify_on_output` pattern: `^AGENT_LOOP_WAKE_qwenlab`
 
-```bash
-while true; do
-  sleep 900
-  echo 'AGENT_LOOP_TICK_qwenlab {"prompt":"Run /home/kirua/app/qwen-lab/scripts/lab-tick.sh; if Outcome set or budget exhausted, stop this loop and confirm daily profile."}'
-done
-```
-
-3. Start the background shell with `notify_on_output` pattern `^AGENT_LOOP_WAKE_qwenlab` or `^AGENT_LOOP_TICK_qwenlab`.
-4. **Run one tick immediately** (`/home/kirua/app/qwen-lab/scripts/lab-tick.sh`) before the first sleep.
-5. Each wake: exactly one `lab-tick.sh`; on Outcome or budget → kill sleeper PID, run `scripts/lab-restore-daily.sh`, confirm `switch-context.sh status` → `daily`. Do not re-arm.
-
-## Manual / headless
-
-```bash
-cd /home/kirua/app/qwen-lab
-./scripts/lab-status.sh
-./scripts/lab-tick.sh
-./scripts/lab-supervisor.sh --max-iters 12 --campaign cuda-graphs-101
-./scripts/lab-restore-daily.sh
-```
+3. Run one tick immediately before the first sleep. Each wake: exactly one `lab-tick.sh`.
 
 ## Stop
 
-Kill the tracked sleeper/loop PID; do not re-arm. Run `./scripts/lab-restore-daily.sh` if profile is not `daily`. Confirm Outcome in `TASKBOARD.md` / `.state/tick.env`.
-
-## Sentinels
-
-| Sentinel | Mode |
-|---|---|
-| `AGENT_LOOP_WAKE_qwenlab` | Dynamic re-arm after each tick |
-| `AGENT_LOOP_TICK_qwenlab` | Fixed interval (e.g. 900s) |
+- Outcome `GO` | `NO-GO` | `BUDGET` in `.state/tick.env`
+- Kill sleeper PID if using Cursor loop; run `scripts/lab-restore-daily.sh`
+- Confirm `switch-context.sh status` → `CONTEXT_PROFILE=daily`
